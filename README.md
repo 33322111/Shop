@@ -1,2 +1,2 @@
-# shop
+# Shop
 Сourse project
