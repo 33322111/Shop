@@ -1,0 +1,72 @@
+{% extends 'base-page.html' %}
+{% load static %}
+
+{% block title %}
+    Login
+{% endblock title %}
+
+{% block container %}
+    <nav aria-label="breadcrumb" class="w-100 float-left">
+        <ol class="breadcrumb parallax justify-content-center" data-source-url="img/banner/parallax.jpg" style="background-image: url(&quot;img/banner/parallax.jpg&quot;); background-position: 50% 0.809717%;">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">login</li>
+        </ol>
+    </nav>
+    <div class="main-content w-100 float-left blog-list">
+        <div class="container">
+            <div class="row">
+
+                <div class="products-grid col-xl-9 col-lg-8 order-lg-2">
+                    <div class="row">
+                        <div class="col-lg-12 order-lg-last account-content">
+								<h4>Login</h4>
+								<form method="post" action="{% url 'login' %}">
+									{% csrf_token %}
+
+									<!-- End .row -->
+
+									<div class="form-group required-field">
+										<label for="acc-email">Email<span class="required">*</span></label>
+										<input type="text" class="form-control" id="acc-email" name="email" required="">
+									</div>
+									<!-- End .form-group -->
+
+									<div class="form-group required-field">
+										<label for="acc-password">Password<span class="required">*</span></label>
+										<input type="password" class="form-control" id="acc-password" name="password" required="">
+									</div>
+
+									<div class="form-group required-field">
+										<label for="acc-email">{{ attention }}<span class="required"></span></label>
+									</div>
+
+									{% for error in login_form.non_field_errors %}
+									<div class="form-group required-field">
+										<label for="acc-email">{{ error }}<span class="required"></span></label>
+									</div>
+									{% endfor %}
+
+									<div class="required text-right">* Required Field</div>
+									<div class="form-footer d-flex justify-content-between align-items-center">
+										<a href="#"><i class="material-icons">navigate_before</i>Back</a>
+
+										<div class="form-footer-right">
+											<button type="submit" class="btn btn-primary btn-primary">Login</button>
+										</div>
+									</div>
+                                <!-- End .form-footer -->
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+		</div>
+
+					</div>
+					</div>
+					</div>
+				</div>
+            </div>
+        </div>
+    </div>
+{% endblock container %}

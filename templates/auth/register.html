@@ -1,0 +1,52 @@
+{% extends 'base-page.html' %}
+{% load static %}
+
+{% block title %}
+    Register
+{% endblock title %}
+
+{% block container %}
+    <nav aria-label="breadcrumb" class="w-100 float-left">
+        <ol class="breadcrumb parallax justify-content-center" data-source-url="img/banner/parallax.jpg" style="background-image: url(&quot;img/banner/parallax.jpg&quot;); background-position: 50% 0.809717%;">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">register</li>
+        </ol>
+    </nav>
+    <div class="main-content w-100 float-left blog-list">
+        <div class="container">
+            <div class="row">
+                <div class="products-grid col-xl-9 col-lg-8 order-lg-2">
+                    <div class="row">
+                        <div class="col-lg-12 order-lg-last account-content">
+								<h4>Register</h4>
+								<form method="post" action="{% url 'register' %}">
+									{% csrf_token %}
+									{% for field in user_form %}
+						                        <div class="form-group required-field">
+													<div class="form-group required-field">
+														<span style="color: red">{{ field.errors }}</span>
+														{{ field.label_tag }}
+														{{ field }}
+													</div>
+												</div>
+									{% endfor %}
+
+										<div class="form-footer-right">
+											<button type="submit" class="btn btn-primary btn-primary">Register</button>
+										</div>
+                                <!-- End .form-footer -->
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+		</div>
+
+					</div>
+					</div>
+					</div>
+				</div>
+            </div>
+        </div>
+    </div>
+{% endblock container %}

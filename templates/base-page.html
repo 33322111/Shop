@@ -84,12 +84,19 @@
 		</div>
 		<div class="user-info">
 		<button type="button" class="btn">
-		<i class="material-icons">perm_identity</i>		</button>
+			{% if user.is_authenticated %}
+				{{ user.email }}
+			{% else %}
+				<i class="material-icons">
+					perm_identity
+				</i>
+			{% endif %}
+		</button>
 		<div id="user-dropdown" class="user-menu">
 		<ul>
-			<li><a href="my-account.html" class="text-capitalize">my account</a></li>
-			<li><a href="#" class="modal-view button" data-toggle="modal" data-target="#modalRegisterForm">Register</a></li>
-			<li><a href="#" class="modal-view button" data-toggle="modal" data-target="#modalLoginForm">login</a></li>
+			<li><a href="{% url 'login' %}" class="text-capitalize">Login</a></li>
+			<li><a href="{% url 'logout' %}" class="text-capitalize">Logout</a></li>
+			<li><a href="{% url 'register' %}" class="text-capitalize">Register</a></li>
 		</ul>
 		</div>
 		</div>
