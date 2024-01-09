@@ -83,7 +83,7 @@
 			</form>
 		</div>
 		<div class="user-info">
-		<button type="button" class="btn">
+		<button type="button" class="btn" style="margin: 0px 0px 30px 0px;">
 			{% if user.is_authenticated %}
 				{{ user.email }}
 			{% else %}
@@ -101,9 +101,9 @@
 		</div>
 		</div>
 		<div class="cart-wrapper">
-			<button type="button" class="btn">
+			<button type="button" class="btn" style="margin: 30px 0px 0px 0px;">
 				<i class="material-icons">shopping_cart</i>
-				<span class="ttcount">2</span>			</button>
+				<span class="ttcount" style="margin: 30px 0px 0px 0px;">2</span>			</button>
 			<div id="cart-dropdown" class="cart-menu">
                 <ul class="w-100 float-left">
                   <li>
