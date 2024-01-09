@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Demo powered by Templatetrip">
     <meta name="author" content="">
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:400,500,700,900" rel="stylesheet">
 
@@ -43,11 +43,11 @@
 	<div class="container">
             <div class="header-left float-left d-flex d-lg-flex d-md-block d-xs-block">
 				<div class="language-wrapper toggle">
-				<button type="button" class="btn text-capitalize dropdown-toggle"><img src="img/banner/en.png" alt="en" height="12" width="18"/><span>English</span></button>
+				<button type="button" class="btn text-capitalize dropdown-toggle"><img src="{% static 'img/banner/en.png'%}" alt="en" height="12" width="18"/><span>English</span></button>
 					<div id="language-dropdown" class="language">
 					<ul>
-								<li><img src="img/banner/en.png" alt="en" width="18" height="12"/><span>English</span></li>
-								<li><img src="img/banner/fr.png" alt="fr" width="18" height="12"/><span>French</span></li>
+								<li><img src="{% static 'img/banner/en.png' %}" alt="en" width="18" height="12"/><span>English</span></li>
+								<li><img src="{% static 'img/banner/fr.png' %}" alt="fr" width="18" height="12"/><span>French</span></li>
 					</ul>
 					</div>
 				</div>
@@ -68,7 +68,7 @@
 			</div>
 		<div class="header-middle float-lg-left float-md-left float-sm-left float-xs-none">
 				<div class="logo">
-								<a href="/"><img src="img/logos/logo.png" alt="logo" width="200" height="50" ></a>		</div>
+								<a href="/"><img src="{% static 'img/logos/logo.png' %}" alt="logo" width="200" height="50" ></a>		</div>
 		</div>
 		<div class="header-right d-flex d-xs-flex d-sm-flex justify-content-end float-right">
 		<div class="search-wrapper">
@@ -110,7 +110,7 @@
                     <table class="table table-striped">
                       <tbody>
                         <tr>
-                          <td class="text-center"><a href="#"><img src="img/products/01.jpg" alt="01" title="01" height="104" width="80"></a></td>
+                          <td class="text-center"><a href="#"><img src="{% static 'img/products/01.jpg' %}" alt="01" title="01" height="104" width="80"></a></td>
                           <td class="text-left product-name"><a href="#">aliquam quaerat voluptatem</a>
 						  <div class="quantity float-left w-100">
                              <span class="cart-qty">1 × </span>
@@ -230,7 +230,7 @@
 
 					<ul class="list-unstyled">
 				<li>
-					<span class="menu-banner"><img src="img/banner/menu-banner.jpg" alt="menu-banner" width="161" height="230"/></span>                </li>
+					<span class="menu-banner"><img src="{% static 'img/banner/menu-banner.jpg' %}" alt="menu-banner" width="161" height="230"/></span>                </li>
 			  </ul>
 			</div>
 		  </div>
@@ -400,7 +400,7 @@
 
 					<ul class="list-unstyled">
 				<li>
-					<span class="menu-banner"><img src="img/banner/menu-banner.jpg" alt="menu-banner" width="210" height="300"/></span>                </li>
+					<span class="menu-banner"><img src="{% static 'img/banner/menu-banner.jpg' %}" alt="menu-banner" width="210" height="300"/></span>                </li>
 			  </ul>
 			</div>
 		  </div>
@@ -508,7 +508,7 @@
 
     <!-- Footer -->
 	<div class="block-newsletter">
-				<div class="parallax" data-source-url="img/banner/parallax.jpg" style="background-image:url(img/banner/parallax.jpg); background-position:50% 65.8718%;">
+				<div class="parallax" data-source-url="{% static 'img/banner/parallax.jpg' %}" style="background-image:url({% static 'img/banner/parallax.jpg' %}); background-position:50% 65.8718%;">
 				<div class="container">
 					<div class="tt-newsletter col-sm-7">
 							<h2 class="text-uppercase">Subscribe to our Newsletter</h2>
@@ -531,7 +531,7 @@
       <div class="row">
         <div class="col-md-2 footer-cms footer-column">
 			<div class="ttcmsfooter">
-              <div class="footer-logo"><img src="img/logos/footer-logo.png" alt="footer-logo" width="200" height="50"></div>
+              <div class="footer-logo"><img src="{% static 'img/logos/footer-logo.png' %}" alt="footer-logo" width="200" height="50"></div>
               <div class="footer-desc">At vero eos et accusamus et iusto odio dignissimos ducimus, duis faucibus enim vitae</div>
 			  </div>
 		</div>
@@ -705,46 +705,46 @@
 						<div class="product-large-image tab-content">
 						<div class="tab-pane active" id="product-1" role="tabpanel" aria-labelledby="product-tab-1">
 							<div class="single-img img-full">
-								<a href="img/products/01.jpg"><img src="img/products/01.jpg" class="img-fluid" alt="" width="368" height="478"></a>
+								<a href="{% static 'img/products/01.jpg' %}"><img src="{% static 'img/products/01.jpg' %}" class="img-fluid" alt="" width="368" height="478"></a>
 							</div>
 						</div>
 						<div class="tab-pane" id="product-2" role="tabpanel" aria-labelledby="product-tab-2">
 							<div class="single-img">
-								<a href="img/products/02.jpg"><img src="img/products/02.jpg" class="img-fluid" alt="" width="368" height="478"></a>
+								<a href="{% static 'img/products/02.jpg' %}"><img src="{% static 'img/products/02.jpg' %}" class="img-fluid" alt="" width="368" height="478"></a>
 							</div>
 						</div>
 						<div class="tab-pane" id="product-3" role="tabpanel" aria-labelledby="product-tab-3">
 							<div class="single-img">
-								<a href="img/products/03.jpg"><img src="img/products/03.jpg" class="img-fluid" alt="" width="368" height="478"></a>
+								<a href="{% static 'img/products/03.jpg' %}"><img src="{% static 'img/products/03.jpg' %}" class="img-fluid" alt="" width="368" height="478"></a>
 							</div>
 						</div>
 						<div class="tab-pane" id="product-4" role="tabpanel" aria-labelledby="product-tab-4">
 							<div class="single-img">
-								<a href="img/products/04.jpg"><img src="img/products/04.jpg" class="img-fluid" alt="" width="368" height="478"></a>
+								<a href="{% static 'img/products/04.jpg' %}"><img src="{% static 'img/products/04.jpg' %}" class="img-fluid" alt="" width="368" height="478"></a>
 							</div>
 						</div>
 						<div class="tab-pane" id="product-5" role="tabpanel" aria-labelledby="product-tab-5">
 							<div class="single-img">
-								<a href="img/products/05.jpg"><img src="img/products/05.jpg" class="img-fluid" alt="" width="368" height="478"></a>
+								<a href="{% static 'img/products/05.jpg' %}"><img src="{% static 'img/products/05.jpg' %}" class="img-fluid" alt="" width="368" height="478"></a>
 							</div>
 						</div>
 				</div>
 				<div class="small-image-list float-left w-100">
                                 <div class="nav-add small-image-slider-single-product-tabstyle-3 owl-carousel" role="tablist">
                                     <div class="single-small-image img-full">
-                                        <a data-toggle="tab" id="product-tab-1" href="#product-1" class="img active"><img src="img/products/01.jpg" class="img-fluid" alt=""></a>
+                                        <a data-toggle="tab" id="product-tab-1" href="#product-1" class="img active"><img src="{% static 'img/products/01.jpg' %}" class="img-fluid" alt=""></a>
                                     </div>
                                     <div class="single-small-image img-full">
-                                        <a data-toggle="tab" id="product-tab-2" href="#product-2" class="img"><img src="img/products/02.jpg" class="img-fluid" alt=""></a>
+                                        <a data-toggle="tab" id="product-tab-2" href="#product-2" class="img"><img src="{% static 'img/products/02.jpg' %}" class="img-fluid" alt=""></a>
                                     </div>
                                     <div class="single-small-image img-full">
-                                        <a data-toggle="tab" id="product-tab-3" href="#product-3" class="img"><img src="img/products/03.jpg" class="img-fluid" alt=""></a>
+                                        <a data-toggle="tab" id="product-tab-3" href="#product-3" class="img"><img src="{% static 'img/products/03.jpg' %}" class="img-fluid" alt=""></a>
                                     </div>
                                     <div class="single-small-image img-full">
-                                        <a data-toggle="tab" id="product-tab-4" href="#product-4" class="img"><img src="img/products/04.jpg" class="img-fluid" alt=""></a>
+                                        <a data-toggle="tab" id="product-tab-4" href="#product-4" class="img"><img src="{% static 'img/products/04.jpg' %}" class="img-fluid" alt=""></a>
                                     </div>
                                     <div class="single-small-image img-full">
-                                        <a data-toggle="tab" id="product-tab-5" href="#product-5" class="img"><img src="img/products/05.jpg" class="img-fluid" alt=""></a>
+                                        <a data-toggle="tab" id="product-tab-5" href="#product-5" class="img"><img src="{% static 'img/products/05.jpg' %}" class="img-fluid" alt=""></a>
                                     </div>
                                 </div>
                             </div>
@@ -812,7 +812,7 @@
 			<div class="col-md-6 divide-right">
 			<div class="row">
 				<div class="col-md-5 col-sm-4 col-xs-12 product-img float-left">
-					<img src="img/products/01.jpg" class="img-responsive" alt="01">
+					<img src="{% static 'img/products/01.jpg' %}" class="img-responsive" alt="01">
 				</div>
 				<div class="col-md-7 col-sm-8 col-xs-12 product-desc float-left">
 					<h4 class="product-title text-capitalize">Burgundy Small Dress</h4>
@@ -869,15 +869,15 @@
 			<div class="row">
 				<div class="single-item col-sm-4 col-xs-4">
 					<div class="remove"></div>
-					<div class="image"><img src="img/products/01.jpg" class="img-fluid" alt=""></div>
+					<div class="image"><img src="{% static 'img/products/01.jpg' %}" class="img-fluid" alt=""></div>
 				</div>
 				<div class="single-item col-sm-4 col-xs-4">
 					<div class="remove"></div>
-					<div class="image"><img src="img/products/02.jpg" class="img-fluid" alt=""></div>
+					<div class="image"><img src="{% static 'img/products/02.jpg' %}" class="img-fluid" alt=""></div>
 				</div>
 				<div class="single-item col-sm-4 col-xs-4">
 					<div class="remove"></div>
-					<div class="image"><img src="img/products/03.jpg" class="img-fluid" alt=""></div>
+					<div class="image"><img src="{% static 'img/products/03.jpg' %}" class="img-fluid" alt=""></div>
 				</div>
 			</div>
 			</div>
