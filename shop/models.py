@@ -1,5 +1,9 @@
+from _decimal import Decimal
+
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models.signals import post_save, post_delete
+from django.dispatch import receiver
 
 
 class Product(models.Model):
@@ -53,6 +57,25 @@ class Order(models.Model):
     def __str__(self):
         return f'{self.user} - {self.amount} - {self.status}'
 
+    @staticmethod
+    def get_cart(user: User):
+        cart = Order.objects.filter(user=user, status=Order.STATUS_CART).first()
+        if not cart:
+            cart = Order.objects.create(user=user, status=Order.STATUS_CART, amount=0)
+        return cart
+
+    def get_amount(self):
+        amount = Decimal(0)
+        for item in self.orderitem_set.all():
+            amount += item.amount
+        return amount
+
+    def make_order(self):
+        items = self.orderitem_set.all()
+        if items and self.status == Order.STATUS_CART:
+            self.status = Order.STATUS_WAITING_FOR_PAYMENT
+            self.save()
+
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
@@ -66,3 +89,21 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return f'{self.product} - {self.price}'
+
+    @property
+    def amount(self):
+        return self.quantity * (self.price - self.discount)
+
+
+@receiver(post_save, sender=OrderItem)
+def recalculate_order_amount_after_save(sender, instance, **kwargs):
+    order = instance.order
+    order.amount = order.get_amount()
+    order.save()
+
+
+@receiver(post_delete, sender=OrderItem)
+def recalculate_order_amount_after_delete(sender, instance, **kwargs):
+    order = instance.order
+    order.amount = order.get_amount()
+    order.save()
