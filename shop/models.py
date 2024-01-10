@@ -1,7 +1,8 @@
 from _decimal import Decimal
 
 from django.contrib.auth.models import User
-from django.db import models
+from django.db import models, transaction
+from django.db.models import Sum
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 
@@ -32,6 +33,11 @@ class Payment(models.Model):
 
     def __str__(self):
         return f'{self.user} - {self.amount}'
+
+    @staticmethod
+    def get_balance(user: User):
+        amount = (Payment.objects.filter(user=user).aggregate(Sum('amount')))['amount__sum']
+        return amount or Decimal(0)
 
 
 class Order(models.Model):
@@ -75,6 +81,13 @@ class Order(models.Model):
         if items and self.status == Order.STATUS_CART:
             self.status = Order.STATUS_WAITING_FOR_PAYMENT
             self.save()
+            auto_payment_unpaid_orders(self.user)
+
+    @staticmethod
+    def get_amount_of_unpaid_orders(user: User):
+        amount = (Order.objects.filter(user=user, status=Order.STATUS_WAITING_FOR_PAYMENT)
+                  .aggregate(Sum('amount')))['amount__sum']
+        return amount or Decimal(0)
 
 
 class OrderItem(models.Model):
@@ -95,6 +108,17 @@ class OrderItem(models.Model):
         return self.quantity * (self.price - self.discount)
 
 
+@transaction.atomic()
+def auto_payment_unpaid_orders(user: User):
+    unpaid_orders = Order.objects.filter(user=User, status=Order.STATUS_WAITING_FOR_PAYMENT)
+    for order in unpaid_orders:
+        if Payment.get_balance(user) < order.amount:
+            break
+        order.payment = Payment.objects.all().last()
+        order.status = Order.STATUS_PAID
+        order.save()
+        Payment.objects.create(user=user, amount=-order.amount)
+
 @receiver(post_save, sender=OrderItem)
 def recalculate_order_amount_after_save(sender, instance, **kwargs):
     order = instance.order
@@ -107,3 +131,8 @@ def recalculate_order_amount_after_delete(sender, instance, **kwargs):
     order = instance.order
     order.amount = order.get_amount()
     order.save()
+
+@receiver(post_save, sender=Payment)
+def auto_payment(sender, instance, **kwargs):
+    user = instance.user
+    auto_payment_unpaid_orders(user)
