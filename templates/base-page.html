@@ -37,8 +37,8 @@
 		</div>
 	</div>
 	</div>
-	<div class="header-main-head">
 
+	<div class="header-main-head">
     <div class="header-main">
 	<div class="container">
             <div class="header-left float-left d-flex d-lg-flex d-md-block d-xs-block">
@@ -82,28 +82,11 @@
 			  </div>
 			</form>
 		</div>
-		<div class="user-info">
-		<button type="button" class="btn">
-			{% if user.is_authenticated %}
-				{{ user.email }}
-			{% else %}
-				<i class="material-icons">
-					perm_identity
-				</i>
-			{% endif %}
-		</button>
-		<div id="user-dropdown" class="user-menu">
-		<ul>
-			<li><a href="{% url 'login' %}" class="text-capitalize">Login</a></li>
-			<li><a href="{% url 'logout' %}" class="text-capitalize">Logout</a></li>
-			<li><a href="{% url 'register' %}" class="text-capitalize">Register</a></li>
-		</ul>
-		</div>
-		</div>
 		<div class="cart-wrapper">
-			<button type="button" class="btn">
+			<button type="button" class="btn" >
 				<i class="material-icons">shopping_cart</i>
-				<span class="ttcount">2</span>			</button>
+				<span class="ttcount">2</span>
+            </button>
 			<div id="cart-dropdown" class="cart-menu">
                 <ul class="w-100 float-left">
                   <li>
@@ -140,6 +123,26 @@
                   </li>
                 </ul>
           </div>
+		</div>
+
+		<div class="user-info">
+		<button type="button" class="btn">
+			{% if user.is_authenticated %}
+                <i></i>
+                <a>{{  user.email }}</a>
+			{% else %}
+				<i class="material-icons">
+					perm_identity
+				</i>
+			{% endif %}
+		</button>
+		<div id="user-dropdown" class="user-menu">
+		<ul>
+			<li><a href="{% url 'login' %}" class="text-capitalize">Login</a></li>
+			<li><a href="{% url 'logout' %}" class="text-capitalize">Logout</a></li>
+			<li><a href="{% url 'register' %}" class="text-capitalize">Register</a></li>
+		</ul>
+		</div>
 		</div>
 		</div>
 	</div>
@@ -888,9 +891,6 @@
 		</div>
   </div>
 </div>
-
-
-
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
