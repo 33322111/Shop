@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_email_verification',
     # --- my apps ---
     'authentication',
     'shop',
@@ -64,7 +65,7 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+                'django.contrib.messages.context_processors.messages'
             ],
         },
     },
@@ -130,3 +131,31 @@ STATICFILES_DIRS = (
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+def verified_callback(user):
+    user.is_active = True
+
+
+#EMAIL_VERIFIED_CALLBACK = verified_callback
+EMAIL_FROM_ADDRESS = 'shev.information@gmail.com'
+EMAIL_MAIL_SUBJECT = 'Confirm your email {{ user.username }}'
+EMAIL_MAIL_HTML = 'auth/mail_body.html'
+EMAIL_MAIL_PLAIN = 'auth/mail_body.txt'
+EMAIL_MAIL_TOKEN_LIFE = 60 * 60
+EMAIL_MAIL_PAGE_TEMPLATE = 'auth/confirm_template.html'
+EMAIL_PAGE_DOMAIN = 'http://127.0.0.1:8000/' # Host
+#EMAIL_MULTI_USER = True  # optional (defaults to False)
+EMAIL_MAIL_CALLBACK = verified_callback
+
+# For Django Email Backend
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'shev.information@gmail.com'
+EMAIL_HOST_PASSWORD = 'usde zecu fqsh dgnq'
+
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'shev.information@gmail.com'
+SERVER_EMAIL = 'shev.information@gmail.com'
+

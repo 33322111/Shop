@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 
 
 class LoginForm(forms.Form):
@@ -20,7 +21,7 @@ class LoginForm(forms.Form):
             raise forms.ValidationError(f'Password for user with email {email} is not correct!')
 
 
-class RegisterForm(forms.ModelForm):
+class RegisterForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['email'].required = True
@@ -28,9 +29,19 @@ class RegisterForm(forms.ModelForm):
         self.fields['first_name'].required = True
         for visible in self.visible_fields():
             visible.field.widget.attrs['class'] = 'form-control'
+
+    def clean(self):
+        cleaned_data = super().clean()
+        email = cleaned_data.get('email')
+        user_count = User.objects.filter(email=email).count()
+        if user_count > 0:
+            raise forms.ValidationError(f'The user with email {email} already exists!')
+
+
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email', 'password')
+        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
         widgets = {
-            'password': forms.PasswordInput()
+            'password1': forms.PasswordInput(),
+            'password2': forms.PasswordInput(),
         }

@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django_email_verification import urls as email_urls
 
 from main import views
 
@@ -24,4 +25,5 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('admin/', admin.site.urls),
     path('auth/', include('authentication.urls')),
+    path('email/', include(email_urls), name='email-verification'),
 ]
